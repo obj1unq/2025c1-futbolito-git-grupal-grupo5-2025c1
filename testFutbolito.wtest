@@ -1,0 +1,15 @@
+import objetos.*
+import wollok.game.*
+describe "futbolito" {
+
+    method initialize(){
+        game.width(15)
+	    game.height(10)
+    }
+  test "patear la pelota 3 posiciones hacia la derecha" {
+    lionel.position(game.at(5,5)) 
+    lionel.patear()
+
+    assert.equals(game.at(8,5), pelota.position())
+  }
+}

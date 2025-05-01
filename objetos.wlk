@@ -8,8 +8,22 @@ Si tiene la camiseta titular pasará a usar la suplente y viceversa.
 Validar que solo se puede realizar si lionel está sobre el borde izquierdo (El x de la posición debe ser 0)
 */
 	var property position = game.at(3,5)
+
 	var property camiseta = "lionel-titular.png"
-	
+	var property bocha = pelota
+
+	method patear(){
+		self.validarPatear()
+		bocha.pateada()
+	}
+	method validarPatear(){
+		if(! self.puedoPatear()){
+			self.error("Tengo que estar sobre la pelota")
+		}
+	}
+
+	method puedoPatear() = self.position() == bocha.position()
+
 	method image() {
 		return camiseta
 	}
@@ -42,4 +56,9 @@ Validar que solo se puede realizar si lionel está sobre el borde izquierdo (El 
 object pelota {
 	const property image="pelota.png"
 	var property position = game.at(5,5)	
+
+	method pateada(){
+
+		position = game.at((game.width() -1 ).min(position.x()+3), position.y())
+	}
 }
