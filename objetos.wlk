@@ -6,11 +6,18 @@ object lionel {
 	var property position = game.at(3,5)
 	var property bocha = pelota
 
+	method levantarla(){
+		self.validarConBocha()
+		bocha.elevarse()
+
+	}
+
+
 	method patear(){
-		self.validarPatear()
+		self.validarConBocha()
 		bocha.pateada()
 	}
-	method validarPatear(){
+	method validarConBocha(){
 		if(! self.puedoPatear()){
 			self.error("Tengo que estar sobre la pelota")
 		}
@@ -36,6 +43,16 @@ object lionel {
 object pelota {
 	const property image="pelota.png"
 	var property position = game.at(5,5)	
+
+	method elevarse(){
+
+		position = game.at(position.x(),position.y() + 1 )
+		game.schedule(3000, {self.bajar()})
+	}
+
+	method bajar(){
+		position = game.at(position.x(),position.y() -1)
+	}
 
 	method pateada(){
 

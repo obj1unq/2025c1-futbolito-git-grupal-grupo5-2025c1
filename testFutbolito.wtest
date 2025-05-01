@@ -12,4 +12,11 @@ describe "futbolito" {
 
     assert.equals(game.at(8,5), pelota.position())
   }
+
+  test "levantar la pelota" {
+    lionel.position(game.at(5,5))
+    lionel.levantarla()
+
+    assert.equals(game.at(5,6), pelota.position())
+  }
 }
