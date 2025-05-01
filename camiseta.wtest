@@ -1,0 +1,20 @@
+import objetos.*
+
+describe "camiseta" {
+    method initialize(){
+        game.width(15)
+	    game.height(10)
+    }
+  test "De camiseta titular a suplente y luego de suplente a titular" {
+    lionel.position(game.at(0,0))
+    lionel.cambiarCamiseta()
+    assert.equals(lionel.camiseta(), "lionel-suplente.png")
+    lionel.cambiarCamiseta()
+    assert.equals(lionel.camiseta(), "lionel-titular.png")
+  }
+
+  test "Lionel no se encuentra en el borde izquierdo"{
+    lionel.position(game.at(1,0))
+    assert.throwsException({ lionel.cambiarCamiseta() })
+  }
+}
