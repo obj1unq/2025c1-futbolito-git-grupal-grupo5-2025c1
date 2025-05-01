@@ -36,6 +36,21 @@ Validar que solo se puede realizar si lionel está sobre el borde izquierdo (El 
 		position = game.at((game.width() - 1).min(position.x() + 1), position.y()) 
 	}
 
+	method estaEnPosicion() {
+	  return position == bocha.position()
+	}
+
+	method validarTaquito() {
+		if(not self.estaEnPosicion()){
+			self.error("Lionel no se encuentra donde la pelota")
+		}
+	}
+
+	method taquito() {
+	  self.validarTaquito()
+	  bocha.serTaquito()
+	}
+
 	method cambiarCamiseta() {
 		self.validarPosicion()
 		if (camiseta != "lionel-titular.png") {
@@ -55,8 +70,12 @@ Validar que solo se puede realizar si lionel está sobre el borde izquierdo (El 
 
 object pelota {
 	const property image="pelota.png"
-	var property position = game.at(5,5)	
+	var property position = game.at(5,5)
 
+	method serTaquito() {
+	  position = game.at(0.max(position.x() - 2), position.y())
+	}
+	
 	method pateada(){
 
 		position = game.at((game.width() -1 ).min(position.x()+3), position.y())
